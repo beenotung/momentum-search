@@ -19,11 +19,20 @@ A TypeScript library to iteratively tune parameters using adaptive momentum-base
 
 ## Installation
 
+### Install from package manager
+
 ```bash
 npm install momentum-search
 ```
 
 You can also install `momentum-search` with [pnpm](https://pnpm.io/), [yarn](https://yarnpkg.com/), or [slnpm](https://github.com/beenotung/slnpm)
+
+### Load from script in html
+
+```html
+<!-- bundled 2.2K, gzipped 651B -->
+<script src="https://cdn.jsdelivr.net/npm/momentum-search@0.0.0/dist/browser.js"></script>
+```
 
 ## Usage
 
