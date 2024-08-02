@@ -32,7 +32,8 @@
   "bugs": {
     "url": "https://github.com/beenotung/momentum-search/issues"
   },
-  "main": "index.js",
+  "main": "dist/momentum.js",
+  "types": "dist/momentum.d.ts",
   "scripts": {
     "test": "tsc --noEmit",
     "clean": "rimraf dist",
