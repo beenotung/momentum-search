@@ -25,6 +25,14 @@ A TypeScript library to iteratively tune parameters using adaptive momentum-base
 npm install momentum-search
 ```
 
+```typescript
+// import from typescript
+import { create_momentum } from 'momentum-search'
+
+// import from javascript
+let { create_momentum } = require('momentum-search')
+```
+
 You can also install `momentum-search` with [pnpm](https://pnpm.io/), [yarn](https://yarnpkg.com/), or [slnpm](https://github.com/beenotung/slnpm)
 
 ### Load from script in html
@@ -35,6 +43,11 @@ You can also install `momentum-search` with [pnpm](https://pnpm.io/), [yarn](htt
 
 <!-- minified 1.1KB, gzipped 658B -->
 <script src="https://cdn.jsdelivr.net/npm/momentum-search@1.0.0/dist/browser.js"></script>
+
+<script>
+  // use global function create_momentum
+  let parameters = create_momentum({ n: 4 })
+</script>
 ```
 
 ## Usage
