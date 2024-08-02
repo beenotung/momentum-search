@@ -1,6 +1,6 @@
 {
   "name": "momentum-search",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A TypeScript library to iteratively tune parameters using adaptive momentum-based optimization to minimize a given loss function.",
   "keywords": [
     "momentum",

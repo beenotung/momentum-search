@@ -30,8 +30,11 @@ You can also install `momentum-search` with [pnpm](https://pnpm.io/), [yarn](htt
 ### Load from script in html
 
 ```html
-<!-- bundled 2.2K, gzipped 651B -->
-<script src="https://cdn.jsdelivr.net/npm/momentum-search@0.0.0/dist/browser.js"></script>
+<!-- bundled 2.2KB, gzipped 651B -->
+<script src="https://cdn.jsdelivr.net/npm/momentum-search@1.0.0/dist/browser.js"></script>
+
+<!-- minified 1.1KB, gzipped 658B -->
+<script src="https://cdn.jsdelivr.net/npm/momentum-search@1.0.0/dist/browser.js"></script>
 ```
 
 ## Usage
