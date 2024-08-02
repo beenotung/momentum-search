@@ -1,6 +1,6 @@
 # momentum-search
 
-A TypeScript library to iteratively tune a set of values using an adaptive momentum-based approach to minimize a given loss function.
+A TypeScript library to iteratively tune parameters using adaptive momentum-based optimization to minimize a given loss function.
 
 [![npm Package Version](https://img.shields.io/npm/v/momentum-search)](https://www.npmjs.com/package/momentum-search)
 [![Minified Package Size](https://img.shields.io/bundlephobia/min/momentum-search)](https://bundlephobia.com/package/momentum-search)

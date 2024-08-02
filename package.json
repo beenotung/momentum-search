@@ -1,8 +1,23 @@
 {
   "name": "momentum-search",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "version": "0.0.0",
+  "description": "A TypeScript library to iteratively tune parameters using adaptive momentum-based optimization to minimize a given loss function.",
+  "keywords": [
+    "momentum",
+    "parameter-search",
+    "optimization",
+    "algorithm",
+    "evolution",
+    "tuning",
+    "adaptive",
+    "gradient",
+    "auto-tune",
+    "loss-function",
+    "machine-learning",
+    "isomorphic",
+    "nodejs",
+    "browser"
+  ],
   "author": {
     "name": "Beeno Tung",
     "email": "aabbcc1241@yahoo.com.hk",
