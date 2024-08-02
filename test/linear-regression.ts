@@ -1,4 +1,4 @@
-import { create_momentum } from './momentum'
+import { create_momentum } from '../momentum'
 
 let sample_size = 1000
 let dataset: { x: number[]; y: number }[] = []

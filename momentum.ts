@@ -20,8 +20,9 @@ export function create_momentum(options: {
   )
 
   /* internal variables of tune() */
-  let tuned = 0
   let base_loss = NaN
+  let tuned = 0
+  let tuned_flags: boolean[] = new Array(n).fill(false)
 
   /**
    * @description a step function to tune the values based on momentums.
@@ -30,15 +31,21 @@ export function create_momentum(options: {
   function tune(loss_fn: (values: number[]) => number): void {
     base_loss = loss_fn(values)
     tuned = 0
-    for (let i = 0; i < n; i++) {
-      let base_value = values[i]
+    tuned_flags.fill(false)
+    let need_more_loop = true
+    for (; need_more_loop; ) {
+      need_more_loop = false
+      for (let i = 0; i < n; i++) {
+        if (tuned_flags[i]) {
+          continue
+        }
 
-      for (;;) {
         let momentum = momentums[i]
         if (momentum == 0) {
-          values[i] = base_value
-          break
+          continue
         }
+
+        let base_value = values[i]
 
         values[i] = base_value + momentum
         let forward_loss = loss_fn(values)
@@ -47,8 +54,9 @@ export function create_momentum(options: {
           /* forward is better */
           base_loss = forward_loss
           tuned += Math.abs(momentum)
+          tuned_flags[i] = true
           momentums[i] *= 1.5
-          break
+          continue
         }
 
         values[i] = base_value - momentum
@@ -57,13 +65,22 @@ export function create_momentum(options: {
           /* backward is better */
           base_loss = backward_loss
           tuned += Math.abs(momentum)
+          tuned_flags[i] = true
           momentums[i] *= -1
-          break
+          continue
         }
 
-        /* both are not good */
-        momentums[i] /= 2
-        continue
+        /* both are not good, reduce step size */
+        values[i] = base_value
+        let new_momentum = momentum * 0.5
+        if (new_momentum == momentum) {
+          /* converged */
+          tuned_flags[i] = true
+          momentums[i] = 0
+          continue
+        }
+        momentums[i] = new_momentum
+        need_more_loop = true
       }
     }
   }
