@@ -1,6 +1,17 @@
 let default_initial_step = 1048576
 
-export function create_momentum(options: { n: number; initial_step?: number }) {
+export function create_momentum(options: {
+  /**
+   * @description number of parameters to be optimized
+   */
+  n: number
+
+  /**
+   * @description set the initial momentum to be this value
+   * @default 1048576
+   */
+  initial_step?: number
+}) {
   let n = options.n
 
   let values: number[] = new Array(n).fill(0)
@@ -67,9 +78,10 @@ export function create_momentum(options: { n: number; initial_step?: number }) {
      * @description loss function to be minimized.
      * */
     loss_fn: (values: number[]) => number
+
     /**
      * @description set the initial momentum to be this value
-     * @default 1048576
+     * @default undefined to skip initialization
      */
     initial_step?: number
 
@@ -96,12 +108,13 @@ export function create_momentum(options: { n: number; initial_step?: number }) {
       momentums: number[]
     }) => void
   }) {
-    let initial_step = options.initial_step || default_initial_step
     let min_step = options.min_step || 0
     let min_loss = options.min_loss || 0
     let { loss_fn, iterate_callback } = options
 
-    momentums.fill(initial_step)
+    if (options.initial_step) {
+      momentums.fill(options.initial_step)
+    }
 
     if (iterate_callback) {
       let epoch = 0
@@ -127,9 +140,9 @@ export function create_momentum(options: { n: number; initial_step?: number }) {
     values,
     momentums,
     tune,
-    auto_tune,
     get last_tune_stats() {
       return { tuned, loss: base_loss }
     },
+    auto_tune,
   }
 }
