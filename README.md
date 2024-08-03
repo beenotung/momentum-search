@@ -6,6 +6,11 @@ A TypeScript library to iteratively tune parameters using adaptive momentum-base
 [![Minified Package Size](https://img.shields.io/bundlephobia/min/momentum-search)](https://bundlephobia.com/package/momentum-search)
 [![Minified and Gzipped Package Size](https://img.shields.io/bundlephobia/minzip/momentum-search)](https://bundlephobia.com/package/momentum-search)
 
+## Example Use Cases
+
+- [Find the coefficients of linear regression](./test/linear-regression.ts)
+- [Find the weights and bias of neural network](./test/xor.ts)
+
 ## Features
 
 - Momentum-based optimizer with adaptive step size
