@@ -20,6 +20,18 @@ for (let i = 0; i < n; i++) {
   parameters.values[i] = Math.random() * 2 - 1
 }
 
+// parameters.values[0] = -50
+// parameters.values[1] = -50
+// parameters.values[2] = +25
+
+// parameters.values[3] = -9.5
+// parameters.values[4] = -9.5
+// parameters.values[5] = +10.5
+
+// parameters.values[6] = -30
+// parameters.values[7] = +30
+// parameters.values[8] = -15
+
 let index = 0
 function forward(x: number[]): number {
   let acc = 0
@@ -27,6 +39,7 @@ function forward(x: number[]): number {
   acc += x[1] * parameters.values[index++]
   acc += parameters.values[index++]
   return sigmoid(acc)
+  // return acc < 0 ? 0 : acc
 }
 
 function sigmoid(x: number): number {
