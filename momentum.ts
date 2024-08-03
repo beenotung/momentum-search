@@ -1,5 +1,12 @@
 let default_initial_step = 1048576
 
+function default_reset_values(values: number[]): void {
+  let n = values.length
+  for (let i = 0; i < n; i++) {
+    values[i] = Math.random() * 2 - 1
+  }
+}
+
 export function create_momentum(options: {
   /**
    * @description number of parameters to be optimized
@@ -124,14 +131,20 @@ export function create_momentum(options: {
       values: number[]
       momentums: number[]
     }) => void
+
+    /**
+     * @description to reset the values when got stuck in local optimal
+     * @default Random between -1 and +1
+     */
+    reset_values?: (values: number[]) => void
   }) {
     let min_step = options.min_step || 0
     let min_loss = options.min_loss || 0
+    let initial_step = options.initial_step || default_initial_step
+    let reset_values = options.reset_values || default_reset_values
     let { loss_fn, iterate_callback } = options
 
-    if (options.initial_step) {
-      momentums.fill(options.initial_step)
-    }
+    momentums.fill(initial_step)
 
     if (iterate_callback) {
       let epoch = 0
@@ -139,15 +152,23 @@ export function create_momentum(options: {
         epoch++
         tune(loss_fn)
         iterate_callback({ epoch, tuned, loss: base_loss, values, momentums })
-        if (tuned <= min_step || base_loss <= min_loss) {
+        if (base_loss <= min_loss) {
           break
+        }
+        if (tuned <= min_step) {
+          reset_values(values)
+          momentums.fill(initial_step)
         }
       }
     } else {
       for (;;) {
         tune(loss_fn)
-        if (tuned <= min_step || base_loss <= min_loss) {
+        if (base_loss <= min_loss) {
           break
+        }
+        if (tuned <= min_step) {
+          reset_values(values)
+          momentums.fill(initial_step)
         }
       }
     }
