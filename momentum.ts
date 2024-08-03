@@ -72,7 +72,7 @@ export function create_momentum(options: {
 
         /* both are not good, reduce step size */
         values[i] = base_value
-        let new_momentum = momentum * 0.5
+        let new_momentum = momentum / 2
         if (new_momentum == momentum) {
           /* converged */
           tuned_flags[i] = true
