@@ -1,7 +1,5 @@
 import { create_momentum } from '../momentum'
 
-let sample_size = 4
-
 let dataset: { x: number[]; y: number }[] = [
   { x: [0, 0], y: 0 },
   { x: [1, 0], y: 1 },
@@ -11,8 +9,10 @@ let dataset: { x: number[]; y: number }[] = [
 
 let n = 0
 {
+  /* hidden layer */
   n += 2 + 1
   n += 2 + 1
+  /* output layer */
   n += 2 + 1
 }
 let parameters = create_momentum({ n })
@@ -72,4 +72,4 @@ parameters.auto_tune({
   },
 })
 
-console.log(parameters)
+// console.log(parameters.values)
